@@ -1,6 +1,8 @@
 opnsense_haproxy
 =========
 
+New version for Python3
+
 This Ansible role is meant for managing HAProxy installations running as a plugin on OPNsense firewalls (see https://opnsense.org)
 
 The configuration occurs via the OPNsene API.
