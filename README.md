@@ -68,7 +68,48 @@ These are quite a lot and will follow soon.
 Example Playbook
 ----------------
 
-Will also follow soon.
+Below is an example playbook for adding a single server, backend pool, acl and action. 
+This is enough to route traffic for URLs containing "DESIRED_ROUTE" to the real server at SERVER_IP.
+
+```
+---
+- name: "testhaproxy"
+  hosts: myhosts
+  remote_user: root
+
+  vars_files:
+    - opnsense_secrets.yaml
+
+  vars:
+    opnsense_api_url: "[OPNSENSE_HOST_URL]"
+    opnsense_haproxy_servers:
+      test_vm_server:
+        address: "[SERVER_IP]"
+        port: "80"
+        state: present
+    opnsense_haproxy_backends:
+      test_vm_backend:
+        state: present
+        mode: http
+        linked_servers: [test_vm]
+    opnsense_haproxy_acls:
+      test_vm_acl:
+        state: present
+        expression: hdr_sub
+        hdr_sub: [DESIRED_ROUTE]
+    opnsense_haproxy_actions:
+      test_vm_action:
+        state: present
+        type: use_backend
+        test_type: if
+        linked_acls: [test_vm_acl]
+        operator: or
+        value: test_vm_backend
+
+
+  roles:
+    - ansible-opnsense-haproxy
+```
 
 License
 -------
