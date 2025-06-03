@@ -56,7 +56,7 @@ class Haproxy:
         return ssl_object_keys
 
     def getSelected(self, valuesdict, retval='key'):
-        for key, value in valuesdict.iteritems():
+        for key, value in valuesdict.items():
             if value['selected'] == 1:
                 if retval == 'key':
                     return key
@@ -71,7 +71,7 @@ class Haproxy:
         # Catch empty list, which is specified as an actual JSON list
         if type(valuesdict) == list and valuesdict == []:
             return []
-        for key, value in valuesdict.iteritems():
+        for key, value in valuesdict.items():
             if value['selected'] == 1:
                 if retval == 'key':
                     selected_items.append(key)
@@ -82,7 +82,7 @@ class Haproxy:
         return selected_items
 
     def findValueInDict(self, valuesdict, searchvalue, prop='value', retval='key'):
-        for key, value in valuesdict.iteritems():
+        for key, value in valuesdict.items():
             if prop in value and value[prop] == searchvalue:
                 if retval == 'key':
                     return key
@@ -119,7 +119,7 @@ class Haproxy:
 
     def getSelectedKeysFromDict(self, objs):
         selected_items = []
-        for key, value in objs.iteritems():
+        for key, value in objs.items():
             if 'selected' in value and value['selected'] == '1':
                 selected_items.append(key)
         return selected_items
