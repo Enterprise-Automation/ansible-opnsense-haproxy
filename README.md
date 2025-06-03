@@ -68,6 +68,9 @@ These are quite a lot and will follow soon.
 Example Playbook
 ----------------
 
+Below is an example playbook for adding a single server, backend pool, acl and action. 
+This is enough to route traffic for URLs containing "DESIRED_ROUTE" to the real server at SERVER_IP.
+
 ```---
 - name: "testhaproxy"
   hosts: myhosts
